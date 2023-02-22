@@ -40,7 +40,8 @@ app.get('/createdb',(req,res)=>{
         if (err) throw err;
         else{
             console.log('Adatbázis létrehozva');
-            res.send('Adatbázis létrehozva');
+            //res.send('Adatbázis létrehozva');
+            res.sendFile(__dirname + '/public/createdb.html')
         }
     });
 });
@@ -55,7 +56,8 @@ app.get('/createtable',(req,res)=>{
         }
         else {
             console.log('Adattábla létrehozva');
-            res.send('Adattábla létrehozva');
+            //res.send('Adattábla létrehozva');
+            res.sendFile(__dirname + '/public/createtable.html')
         }
     });
 });
@@ -63,7 +65,7 @@ app.get('/createtable',(req,res)=>{
 // Egyed felvétele
 app.get('/insert',(req,res)=>{
     
-    let beRendszam = "HFU-173";
+    let beRendszam = "THG-598";
     let beGyarto = "audi";
     
     let beAuto = {
@@ -79,14 +81,15 @@ app.get('/insert',(req,res)=>{
         }
         else {
             console.log('Autó hozzáadva');
-            res.send('Autó hozzáadva');
+            //res.send('Autó hozzáadva');
+            res.sendFile(__dirname + '/public/insert.html')
         }
     });
 });
 
 // Módosítás (Rendszám)
 app.get('/update/:id', (req,res)=>{
-    let ujRendszam = '\"EEE-156\"';
+    let ujRendszam = '\"KEK-156\"';
     let sql = `UPDATE auto SET rendszam = ${ujRendszam} WHERE id = ${req.params.id};`;
     con.query(sql,(err)=>{
         if (err) {
@@ -96,6 +99,7 @@ app.get('/update/:id', (req,res)=>{
         else {
             console.log('Rendszám módosítva');
             res.send('Rendszám módosítva');
+            //res.sendFile(__dirname + '/public/update.html')
         } 
     });
 });
@@ -111,6 +115,7 @@ app.get('/delete/:id',(req,res)=>{
         else {
             console.log('Sikeres törlés');
             res.send('Sikeres törlés');
+            //res.sendFile(__dirname + '/public/delete.html')
         } 
     });
 });
@@ -126,6 +131,7 @@ app.get('/getautok',(req,res)=>{
         else {
             console.log(result);
             res.send(result);
+            //res.sendFile(__dirname + '/public/getautok.html')
         } 
     });
 });
